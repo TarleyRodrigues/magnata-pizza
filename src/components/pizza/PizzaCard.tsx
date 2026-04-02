@@ -35,8 +35,14 @@ export function PizzaCard({ pizza, onSelect, index = 0 }: PizzaCardProps) {
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-magnata-gold to-transparent
                       opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
+      {/* Pizza number */}
+      <div className="absolute top-3 left-3 font-sans text-[10px] font-black text-magnata-gold/50
+                      tracking-widest tabular-nums select-none">
+        #{String(pizza.display_order).padStart(2, '0')}
+      </div>
+
       {/* Header */}
-      <div className="flex items-start justify-between gap-3">
+      <div className="flex items-start justify-between gap-3 pt-3">
         <h3 className="font-serif text-base font-bold text-magnata-cream leading-tight flex-1">
           {pizza.name}
         </h3>

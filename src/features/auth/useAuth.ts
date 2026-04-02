@@ -55,19 +55,36 @@ export function useAuth(): AuthState & AuthActions {
     const { data: authData, error } = await supabase.auth.signUp({
       email:    data.email,
       password: data.password,
-      options:  { emailRedirectTo: window.location.origin },
+      options:  {
+        emailRedirectTo: window.location.origin,
+        // Metadados usados pelo trigger handle_new_user() para criar o perfil
+        data: {
+          name:        data.name,
+          phone:       data.phone,
+          address:     data.address,
+          address_ref: data.address_ref || null,
+        },
+      },
     })
     if (error) throw error
 
+    // Quando a confirmação de e-mail está ativada no Supabase, authData.session é null.
+    // O perfil é criado pelo trigger handle_new_user() (migration 003) em ambos os casos.
+    if (!authData.session) {
+      throw new Error('Conta criada! Verifique seu e-mail para confirmar antes de fazer login.')
+    }
+
+    // Sessão ativa (confirmação de e-mail desativada) — insere perfil como fallback
+    // caso o trigger não esteja configurado.
     if (authData.user) {
-      const { error: profileError } = await supabase.from('profiles').insert({
+      await supabase.from('profiles').insert({
         id:          authData.user.id,
         name:        data.name,
         phone:       data.phone,
         address:     data.address,
         address_ref: data.address_ref || null,
       })
-      if (profileError) throw profileError
+      // Ignora erros (o trigger já pode ter inserido)
     }
   }, [])
 

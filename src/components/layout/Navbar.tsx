@@ -33,9 +33,15 @@ export function Navbar({ profile, onLoginClick, onCartClick, onLogout }: NavbarP
             <>
               <Link
                 to={profile.role === 'admin' || profile.role === 'owner' ? '/admin' : '/dashboard'}
-                className="hidden sm:block text-xs font-sans text-magnata-muted hover:text-magnata-cream transition-colors px-3 py-1.5"
+                className="flex items-center gap-1.5 bg-magnata-gold-dim border border-magnata-border
+                           hover:border-magnata-gold/50 rounded-xl px-3 py-1.5 transition-all"
               >
-                {profile.role === 'customer' ? `👤 ${profile.name.split(' ')[0]}` : '⚙️ Admin'}
+                <span className="text-sm leading-none">
+                  {profile.role === 'customer' ? '👤' : '⚙️'}
+                </span>
+                <span className="font-sans text-xs font-semibold text-magnata-gold max-w-[80px] truncate">
+                  {profile.role === 'customer' ? profile.name.split(' ')[0] : 'Admin'}
+                </span>
               </Link>
               <button
                 onClick={onLogout}

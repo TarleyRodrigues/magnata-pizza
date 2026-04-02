@@ -101,9 +101,9 @@ where p.is_promotional = true;
 -- BORDAS
 -- ─────────────────────────────────────────────
 insert into bordas (name, price, flavors, display_order) values
-  ('Sem Borda',      0.00,  '{}',                                                                      1),
+  ('Sem Borda',      0.00,  '{}',1),
   ('Borda Simples',  12.00, '{"Requeijão Cremoso","Cheddar","Cream Cheese","Chocolate","Doce de Leite","Goiabada"}', 2),
-  ('Borda Especial', 15.00, '{"Mussarela","Trufada"}',                                                 3);
+  ('Borda Especial', 15.00, '{"Mussarela","Trufada"}',3);
 
 -- ─────────────────────────────────────────────
 -- ADICIONAIS
