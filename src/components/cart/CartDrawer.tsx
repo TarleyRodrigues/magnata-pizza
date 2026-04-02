@@ -4,7 +4,7 @@ import { Button, QtyControl }   from '@/components/ui'
 import { useCartStore }          from '@/store/cart'
 import { useExtras }             from '@/features/catalog/useCatalog'
 import { formatBRL }             from '@/lib/pricing'
-import type { CartExtra, ExtraType } from '@/types'
+import type { ExtraType } from '@/types'
 
 interface CartDrawerProps {
   open:       boolean

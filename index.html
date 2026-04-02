@@ -3,6 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Restaura a rota após redirect do 404.html (GitHub Pages SPA trick) -->
+    <script>
+      (function() {
+        var r = new URLSearchParams(window.location.search).get('r');
+        if (r) {
+          var base = '/magnata-pizza';
+          window.history.replaceState(null, '', base + decodeURIComponent(r));
+        }
+      })();
+    </script>
 
     <!-- SEO -->
     <title>Pizzaria MAGNATA — A Pizza Que Você Merece</title>

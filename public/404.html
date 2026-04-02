@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pizzaria MAGNATA</title>
+    <script>
+      // SPA redirect trick para GitHub Pages + React Router
+      // Quando o GitHub Pages retorna 404 para rotas como /magnata-pizza/dashboard,
+      // este script redireciona para index.html preservando o caminho na query string.
+      var l = window.location;
+      var base = '/magnata-pizza';
+      var path = l.pathname.slice(base.length) || '/';
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        base + '/?r=' + encodeURIComponent(path) +
+        (l.search ? '&' + l.search.slice(1) : '') +
+        l.hash
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
